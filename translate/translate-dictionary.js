@@ -5,6 +5,7 @@
 // @description  划词翻译调用“有道词典（有道翻译）、金山词霸、Bing 词典（必应词典）、剑桥高阶、沪江小D、谷歌翻译”
 // @author       https://github.com/barrer
 // @match        http://*/*
+// @exclude-match *://*.cn/*
 // @include      https://*/*
 // @include      file:///*
 // @run-at       document-start
@@ -17,7 +18,7 @@
 // @connect      cambridge.org
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
-
+if(!document.charset.startsWith('GB')&&""===document.documentElement.lang || document.documentElement.lang.startsWith('en'))
 (function () {
     'use strict';
 
@@ -324,7 +325,7 @@
     }, {
         name: '谷歌翻译',
         id: 'icon-google',
-        image: 'https://i0.hdslb.com/bfs/archive/8487beef42e18c36592b90bb65f95463cd9e6005.png',
+        image: 'https://res.wx.qq.com/mpres/htmledition/images/wxopen/other49d02c.png',
         trigger: function (text, time) {
             idsType = idsExtension.LIST_GOOGLE;
             idsType.forEach(function (id) {
@@ -806,7 +807,7 @@
             // 兼容部分 Content Security Policy
             icon.style.position = 'absolute';
             icon.style.zIndex = zIndex;
-          if(location.host=="www.wulihub.com.cn" || location.host=="djvu.js.org")
+          if(location.host=="gitee.com" || location.host=="djvu.js.org")
             window.default_img.click();
         } else if (!selected) { // 隐藏翻译图标
             log('hide icon');
